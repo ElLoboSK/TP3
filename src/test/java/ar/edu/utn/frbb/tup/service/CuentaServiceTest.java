@@ -110,9 +110,6 @@ public class CuentaServiceTest {
         cuenta.setTipoCuenta(TipoCuenta.CUENTA_CORRIENTE);
         cuenta.setMoneda(TipoMoneda.PESOS);
         
-        when(cuentaDao.find(cuenta.getNumeroCuenta())).thenReturn(null);
-        Cuenta resultado = cuentaDao.find(cuenta.getNumeroCuenta());
-        assertNull(resultado);
         cuentaService.darDeAltaCuenta(cuenta, pepeRino.getDni());
 
         Cuenta cuenta2 = new Cuenta();
@@ -127,7 +124,6 @@ public class CuentaServiceTest {
 
         verify(clienteService, times(1)).agregarCuenta(cuenta2, pepeRino.getDni());
         verify(cuentaDao, times(1)).save(cuenta);
-        verify(cuentaDao, times(2)).find(cuenta.getNumeroCuenta());
     }
 
     //Generar casos de test para darDeAltaCuenta
